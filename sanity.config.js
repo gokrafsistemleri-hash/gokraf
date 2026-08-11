@@ -5,7 +5,7 @@ export default defineConfig({
   name: 'default',
   title: 'Gökraf Yönetim Paneli',
 
-  projectId: 'BURAYA_PROJECT_ID_YAZ',
+  projectId: 'wov9e2cs',
   dataset: 'production',
 
   basePath: '/studio',
