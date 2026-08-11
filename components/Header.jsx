@@ -45,7 +45,7 @@ export default function Header() {
 
           {/* Logo Yazısı */}
           <span className="text-2xl font-black tracking-wider text-slate-900 group-hover:text-blue-600 transition-colors">
-            GÖKRAF<span className="text-blue-600">.</span>
+            GÖKRAF<span className="text-blue-600"></span>
           </span>
         </Link>
 
