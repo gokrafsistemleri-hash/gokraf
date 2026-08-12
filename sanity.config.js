@@ -5,7 +5,7 @@ export default defineConfig({
   name: 'default',
   title: 'Gökraf Yönetim Paneli',
 
-  projectId: 'wov9e2cs', // Sanity Project ID
+  projectId: 'BURAYA_PROJECT_ID_YAZ', // Kendi Project ID'ni koru
   dataset: 'production',
 
   basePath: '/studio',
@@ -14,7 +14,6 @@ export default defineConfig({
 
   schema: {
     types: [
-      // 1. Sadece Ana Sayfa Slide Görselleri
       {
         name: 'slider',
         title: 'Slider Görselleri',
@@ -24,13 +23,22 @@ export default defineConfig({
           { name: 'gorsel', title: 'Slayt Görseli', type: 'image', options: { hotspot: true } },
         ],
       },
-      // 2. Sadece Raf Modellerimiz Kartları
       {
         name: 'model',
         title: 'Raf Modelleri',
         type: 'document',
         fields: [
           { name: 'baslik', title: 'Model Adı', type: 'string' },
+          {
+            name: 'slug',
+            title: 'SEO URL (Slug)',
+            type: 'slug',
+            options: {
+              source: 'baslik', // Başlıktan otomatik üretir
+              maxLength: 96,
+            },
+            validation: (Rule) => Rule.required(),
+          },
           { name: 'gorsel', title: 'Model Görseli', type: 'image', options: { hotspot: true } },
           { name: 'aciklama', title: 'Açıklama', type: 'text' },
         ],
