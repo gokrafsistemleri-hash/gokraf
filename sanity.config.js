@@ -5,7 +5,7 @@ export default defineConfig({
   name: 'default',
   title: 'Gökraf Yönetim Paneli',
 
-  projectId: 'wov9e2cs',
+  projectId: 'wov9e2cs', // Sanity Project ID
   dataset: 'production',
 
   basePath: '/studio',
@@ -14,6 +14,7 @@ export default defineConfig({
 
   schema: {
     types: [
+      // 1. Sadece Ana Sayfa Slide Görselleri
       {
         name: 'slider',
         title: 'Slider Görselleri',
@@ -23,6 +24,7 @@ export default defineConfig({
           { name: 'gorsel', title: 'Slayt Görseli', type: 'image', options: { hotspot: true } },
         ],
       },
+      // 2. Sadece Raf Modellerimiz Kartları
       {
         name: 'model',
         title: 'Raf Modelleri',
