@@ -11,10 +11,11 @@ export default function Home() {
   const [modeller, setModeller] = useState([]);
   const [yukleniyor, setYukleniyor] = useState(true);
 
+  // Sanity Studio'dan Verileri Çekme
   useEffect(() => {
     async function verileriGetir() {
       try {
-        // En güncel slider'lar ve en güncel 6 model
+        // Slider ve en güncel 6 model
         const sliderData = await client.fetch(`*[_type == "slider"] | order(_createdAt desc)`);
         const modelData = await client.fetch(`*[_type == "model"] | order(_createdAt desc)[0..5]`);
 
@@ -30,6 +31,7 @@ export default function Home() {
     verileriGetir();
   }, []);
 
+  // Otomatik Slider Geçişi (4 Saniyede Bir)
   useEffect(() => {
     if (sliderGorseller.length === 0) return;
     const timer = setInterval(() => {
@@ -80,6 +82,7 @@ export default function Home() {
               </div>
             )}
 
+            {/* Slider Noktaları */}
             {sliderGorseller.length > 1 && (
               <div className="absolute bottom-4 right-6 z-20 flex gap-2">
                 {sliderGorseller.map((_, idx) => (
@@ -96,7 +99,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* EN GÜNCEL 6 MODEL */}
+        {/* MODELLERİMİZ BÖLÜMÜ (EN GÜNCEL 6 MODEL) */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">
@@ -111,9 +114,10 @@ export default function Home() {
               </div>
             ) : modeller.length > 0 ? (
               modeller.map((item) => (
-                <div
+                <Link
+                  href={`/modeller/${item._id}`}
                   key={item._id}
-                  className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer group"
+                  className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer group block"
                 >
                   <div className="h-36 sm:h-48 bg-slate-100 relative overflow-hidden flex items-center justify-center text-slate-400 font-medium text-xs">
                     {item.gorsel ? (
@@ -131,15 +135,16 @@ export default function Home() {
                       {item.baslik}
                     </h3>
                   </div>
-                </div>
+                </Link>
               ))
             ) : (
               <div className="col-span-full text-center py-8 text-slate-500 text-xs font-medium">
-                Henüz model eklenmedi.
+                Henüz model eklenmedi. Studio'dan "Raf Modelleri" sekmesinden ekleyebilirsiniz.
               </div>
             )}
           </div>
 
+          {/* Tüm Modellerimize Bakın Butonu */}
           <div className="text-center mt-8">
             <Link
               href="/modeller"
