@@ -13,9 +13,10 @@ export default function ModelDetayPage({ params }) {
   useEffect(() => {
     async function modelGetir() {
       try {
+        // Hem slug.current hem de _id sorgusu yapıyoruz
         const data = await client.fetch(
-          `*[_type == "model" && _id == $id][0]`,
-          { id: resolvedParams.id }
+          `*[_type == "model" && (slug.current == $slugOrId || _id == $slugOrId)][0]`,
+          { slugOrId: resolvedParams.id }
         );
         setModel(data);
       } catch (error) {
