@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Arka Plan Kutusu -->
+  <rect width="512" height="512" rx="110" fill="#0f172a"/>
+  
+  <!-- Raf Katmanları / Çizgileri -->
+  <path d="M120 160h272M120 256h272M120 352h272" stroke="#3b82f6" stroke-width="36" stroke-linecap="round"/>
+  
+  <!-- Sol ve Sağ Dikme Profiller -->
+  <path d="M150 110v292M362 110v292" stroke="#f97316" stroke-width="32" stroke-linecap="round"/>
+  
+  <!-- Merkez Vurgu Noktaları -->
+  <circle cx="256" cy="160" r="22" fill="#38bdf8"/>
+  <circle cx="256" cy="256" r="22" fill="#38bdf8"/>
+  <circle cx="256" cy="352" r="22" fill="#38bdf8"/>
+</svg>
