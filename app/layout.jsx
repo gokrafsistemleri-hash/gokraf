@@ -5,7 +5,7 @@ export const metadata = {
   description:
     "Bütçenize uygun, kaliteli ağır ve hafif yük raf sistemleri Gökraf'ta! Tüm Türkiye'ye ambar ve kargo ile teslimat. Uygun raf fiyatları ve hızlı teklif için tıklayın.",
   icons: {
-    icon: '/icon.svg',
+    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="110" fill="%230f172a"/><path d="M120 160h272M120 256h272M120 352h272" stroke="%233b82f6" stroke-width="36" stroke-linecap="round"/><path d="M150 110v292M362 110v292" stroke="%23f97316" stroke-width="32" stroke-linecap="round"/><circle cx="256" cy="160" r="22" fill="%2338bdf8"/><circle cx="256" cy="256" r="22" fill="%2338bdf8"/><circle cx="256" cy="352" r="22" fill="%2338bdf8"/></svg>',
   },
   keywords: [
     'ucuz raf fiyatları',
