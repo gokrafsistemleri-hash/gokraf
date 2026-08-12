@@ -4,6 +4,9 @@ export const metadata = {
   title: 'Kaliteli & Ucuz Raf Fiyatları | Gökraf Depo Raf Sistemleri',
   description:
     "Bütçenize uygun, kaliteli ağır ve hafif yük raf sistemleri Gökraf'ta! Tüm Türkiye'ye ambar ve kargo ile teslimat. Uygun raf fiyatları ve hızlı teklif için tıklayın.",
+  icons: {
+    icon: '/icon.svg',
+  },
   keywords: [
     'ucuz raf fiyatları',
     'kaliteli depo rafı',
