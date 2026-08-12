@@ -176,6 +176,44 @@ export default function Home() {
             </div>
           </div>
         </section>
+        {/* TÜRKİYE GENELİ HİZMET BÖLGELERİMİZ (SEO İÇ LİNKLEME) */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10 border-t border-slate-200/80">
+          <div className="text-center mb-6">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-2">
+              Türkiye Geneli Raf Sistemleri Gönderimi & Montajı
+            </h2>
+            <p className="text-xs text-slate-500 max-w-xl mx-auto">
+              İstanbul, Ankara, İzmir, Bursa, Kocaeli, Malatya ve 81 ilin tüm sanayi bölgelerine ambar ve kargo ile uygun fiyatlı kaliteli raf sistemleri gönderiyoruz.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-2 max-w-5xl mx-auto">
+            {[
+              { slug: 'istanbul', isim: 'İstanbul İkitelli & Dudullu' },
+              { slug: 'ankara', isim: 'Ankara Ostim & İvedik' },
+              { slug: 'izmir', isim: 'İzmir Pınarbaşı & ALOSBİ' },
+              { slug: 'bursa', isim: 'Bursa İnegöl & NOSAB' },
+              { slug: 'kocaeli', isim: 'Kocaeli Gebze & İMES' },
+              { slug: 'malatya', isim: 'Malatya 1. ve 2. OSB' },
+              { slug: 'adiyaman', isim: 'Adıyaman & Kahta OSB' },
+              { slug: 'gaziantep', isim: 'Gaziantep OSB & Küsget' },
+              { slug: 'konya', isim: 'Konya Büsan OSB' },
+              { slug: 'kayseri', isim: 'Kayseri OSB & MOBİTEK' },
+              { slug: 'adana', isim: 'Adana Hacı Sabancı OSB' },
+              { slug: 'denizli', isim: 'Denizli OSB' },
+              { slug: 'sakarya', isim: 'Sakarya Hendek OSB' },
+              { slug: 'tekirdag', isim: 'Tekirdağ Çorlu & Çerkezköy' },
+            ].map((bolge) => (
+              <Link
+                key={bolge.slug}
+                href={`/raf-sistemleri/${bolge.slug}`}
+                className="text-xs bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-600 px-3 py-2 rounded-lg font-medium text-slate-700 transition-all shadow-sm"
+              >
+                {bolge.isim} Raf Sistemleri →
+              </Link>
+            ))}
+          </div>
+        </section>
       </main>
 
       <Footer />
