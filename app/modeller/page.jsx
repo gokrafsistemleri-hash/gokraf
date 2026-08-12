@@ -2,9 +2,10 @@
 import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Link from 'next/link';
 import { client, urlFor } from '@/lib/sanity';
 
-const PER_PAGE = 12; // Sayfa başına 12 model
+const PER_PAGE = 12;
 
 export default function ModellerPage() {
   const [modeller, setModeller] = useState([]);
@@ -19,11 +20,9 @@ export default function ModellerPage() {
         const baslangic = (sayfa - 1) * PER_PAGE;
         const bitis = sayfa * PER_PAGE;
 
-        // Toplam sayıyı çek
         const count = await client.fetch(`count(*[_type == "model"])`);
         setToplamModel(count);
 
-        // Sayfa başına en yeniden eskiye doğru 12 tane çek
         const modelData = await client.fetch(
           `*[_type == "model"] | order(_createdAt desc)[${baslangic}...${bitis}]`
         );
@@ -45,7 +44,6 @@ export default function ModellerPage() {
       <Header />
 
       <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 py-10 w-full">
-        {/* Başlık */}
         <div className="text-center mb-10">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-2">
             Tüm Raf Modellerimiz
@@ -55,7 +53,6 @@ export default function ModellerPage() {
           </p>
         </div>
 
-        {/* 12'li Model Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {yukleniyor ? (
             <div className="col-span-full text-center py-12 text-slate-400 text-xs">
@@ -63,9 +60,10 @@ export default function ModellerPage() {
             </div>
           ) : modeller.length > 0 ? (
             modeller.map((item) => (
-              <div
+              <Link
+                href={`/modeller/${item._id}`}
                 key={item._id}
-                className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-md group cursor-pointer"
+                className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-md group cursor-pointer block"
               >
                 <div className="h-40 sm:h-52 bg-slate-100 relative overflow-hidden flex items-center justify-center text-slate-400 font-medium text-xs">
                   {item.gorsel ? (
@@ -83,7 +81,7 @@ export default function ModellerPage() {
                     {item.baslik}
                   </h2>
                 </div>
-              </div>
+              </Link>
             ))
           ) : (
             <div className="col-span-full text-center py-12 text-slate-500 text-xs font-medium">
@@ -92,7 +90,6 @@ export default function ModellerPage() {
           )}
         </div>
 
-        {/* Sayfalama (Pagination) Butonları */}
         {toplamSayfa > 1 && (
           <div className="flex justify-center items-center gap-3 mt-12">
             <button
