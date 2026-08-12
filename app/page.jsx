@@ -11,13 +11,12 @@ export default function Home() {
   const [modeller, setModeller] = useState([]);
   const [yukleniyor, setYukleniyor] = useState(true);
 
-  // Sanity Studio'dan Verileri Çekme
   useEffect(() => {
     async function verileriGetir() {
       try {
-        // Slider ve en güncel 6 model
         const sliderData = await client.fetch(`*[_type == "slider"] | order(_createdAt desc)`);
-        const modelData = await client.fetch(`*[_type == "model"] | order(_createdAt desc)[0..5]`);
+        // Slug bilgisini de çekiyoruz
+        const modelData = await client.fetch(`*[_type == "model"]{_id, baslik, gorsel, "slug": slug.current} | order(_createdAt desc)[0..5]`);
 
         setSliderGorseller(sliderData || []);
         setModeller(modelData || []);
@@ -31,7 +30,6 @@ export default function Home() {
     verileriGetir();
   }, []);
 
-  // Otomatik Slider Geçişi (4 Saniyede Bir)
   useEffect(() => {
     if (sliderGorseller.length === 0) return;
     const timer = setInterval(() => {
@@ -82,7 +80,6 @@ export default function Home() {
               </div>
             )}
 
-            {/* Slider Noktaları */}
             {sliderGorseller.length > 1 && (
               <div className="absolute bottom-4 right-6 z-20 flex gap-2">
                 {sliderGorseller.map((_, idx) => (
@@ -99,7 +96,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* MODELLERİMİZ BÖLÜMÜ (EN GÜNCEL 6 MODEL) */}
+        {/* MODELLERİMİZ (SEO LINKLERI ILE) */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">
@@ -115,7 +112,7 @@ export default function Home() {
             ) : modeller.length > 0 ? (
               modeller.map((item) => (
                 <Link
-                  href={`/modeller/${item._id}`}
+                  href={`/modeller/${item.slug || item._id}`}
                   key={item._id}
                   className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer group block"
                 >
@@ -131,7 +128,7 @@ export default function Home() {
                     )}
                   </div>
                   <div className="p-3 sm:p-4 text-center border-t border-slate-100">
-                    <h3 className="font-bold text-slate-800 text-xs sm:text-sm">
+                    <h3 className="font-bold text-slate-800 text-xs sm:text-sm group-hover:text-blue-600 transition-colors">
                       {item.baslik}
                     </h3>
                   </div>
@@ -139,12 +136,11 @@ export default function Home() {
               ))
             ) : (
               <div className="col-span-full text-center py-8 text-slate-500 text-xs font-medium">
-                Henüz model eklenmedi. Studio'dan "Raf Modelleri" sekmesinden ekleyebilirsiniz.
+                Henüz model eklenmedi.
               </div>
             )}
           </div>
 
-          {/* Tüm Modellerimize Bakın Butonu */}
           <div className="text-center mt-8">
             <Link
               href="/modeller"
@@ -155,7 +151,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* NEDEN GÖKRAF? BÖLÜMÜ */}
+        {/* NEDEN GÖKRAF? */}
         <section id="hakkimizda" className="max-w-5xl mx-auto px-4 py-10 text-center border-t border-slate-200/60">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">Neden Gökraf?</h2>
           <p className="text-slate-600 max-w-2xl mx-auto mb-10 text-xs sm:text-sm leading-relaxed">
