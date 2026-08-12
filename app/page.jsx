@@ -11,12 +11,13 @@ export default function Home() {
   const [modeller, setModeller] = useState([]);
   const [yukleniyor, setYukleniyor] = useState(true);
 
-  // Sanity Studio'dan Verileri Çekme
+  // Sanity Studio'dan Verileri Ayrıştırarak Çekme
   useEffect(() => {
     async function verileriGetir() {
       try {
-        const sliderData = await client.fetch(`*[_type == "slider"]`);
-        const modelData = await client.fetch(`*[_type == "model"][0..5]`);
+        // GROQ Sorguları: Tipine göre tam ayrım yapıyoruz
+        const sliderData = await client.fetch(`*[_type == "slider"] | order(_createdAt desc)`);
+        const modelData = await client.fetch(`*[_type == "model"] | order(_createdAt desc)[0..5]`);
 
         setSliderGorseller(sliderData || []);
         setModeller(modelData || []);
@@ -44,12 +45,12 @@ export default function Home() {
       <Header />
 
       <main className="flex-grow">
-        {/* SLIDER BÖLÜMÜ */}
+        {/* SLIDER BÖLÜMÜ (SADECE 'slider' TİPİNDEKİ İÇERİKLER) */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-4">
           <div className="relative overflow-hidden rounded-2xl bg-slate-900 shadow-sm h-[320px] sm:h-[450px]">
             {yukleniyor ? (
               <div className="absolute inset-0 flex items-center justify-center text-slate-400 text-xs">
-                Yükleniyor...
+                Slaytlar Yükleniyor...
               </div>
             ) : sliderGorseller.length > 0 ? (
               sliderGorseller.map((slide, index) => (
@@ -77,7 +78,7 @@ export default function Home() {
               ))
             ) : (
               <div className="absolute inset-0 flex items-center justify-center text-slate-500 text-xs font-medium">
-                Görsel bulunamadı. Paneldem ekleyebilirsiniz.
+                Slayt görseli yok. Studio'dan "Slider Görselleri" kısmından ekleyin.
               </div>
             )}
 
@@ -98,7 +99,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* MODELLERİMİZ BÖLÜMÜ */}
+        {/* MODELLERİMİZ BÖLÜMÜ (SADECE 'model' TİPİNDEKİ İÇERİKLER) */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">
@@ -109,7 +110,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {yukleniyor ? (
               <div className="col-span-full text-center py-8 text-slate-400 text-xs">
-                Yükleniyor...
+                Modeller Yükleniyor...
               </div>
             ) : modeller.length > 0 ? (
               modeller.map((item) => (
@@ -137,7 +138,7 @@ export default function Home() {
               ))
             ) : (
               <div className="col-span-full text-center py-8 text-slate-500 text-xs font-medium">
-                Henüz model eklenmedi.
+                Model yok. Studio'dan "Raf Modelleri" kısmından ekleyin.
               </div>
             )}
           </div>
