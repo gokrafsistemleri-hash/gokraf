@@ -2,47 +2,56 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer id="iletisim" className="bg-white border-t border-slate-200 mt-auto">
+    <footer id="iletisim" className="bg-slate-900 text-slate-300 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          
-          {/* Sol Kolon */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">GÖKRAF</h3>
-            <p className="text-slate-600 text-sm leading-relaxed">
-              Müşteri memnuniyeti ve yüksek kalite anlayışıyla hizmetinizdeyiz.
+            <h3 className="text-xl font-bold text-white mb-3">
+              GÖKRAF<span className="text-blue-500">.</span>
+            </h3>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Müşteri memnuniyeti ve yüksek kalite anlayışıyla hizmetinizdeyiz. Endüstriyel ve kurumsal raf çözümlerimizle alanlarınızı değerlendiriyoruz.
             </p>
           </div>
 
-          {/* Orta Kolon: İletişim */}
           <div>
-            <h4 className="font-bold text-slate-900 mb-3">İletişim</h4>
-            <ul className="space-y-2 text-sm text-slate-600">
+            <h4 className="text-sm font-semibold text-white mb-3">İletişim</h4>
+            <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <span className="font-semibold text-slate-800">Telefon:</span>{' '}
-                <a href="tel:+905000000000" className="hover:text-blue-600">+90 (5XX) XXX XX XX</a>
+                <strong className="text-slate-300">Telefon:</strong>{' '}
+                <a href="tel:05416304440" className="hover:text-blue-400 transition-colors">
+                  0541 630 44 40
+                </a>
               </li>
               <li>
-                <span className="font-semibold text-slate-800">E-Posta:</span>{' '}
-                <a href="mailto:info@gokraf.com" className="hover:text-blue-600">info@gokraf.com</a>
+                <strong className="text-slate-300">E-Posta:</strong> info@gokraf.com
               </li>
             </ul>
           </div>
 
-          {/* Sağ Kolon: Sosyal Medya */}
           <div>
-            <h4 className="font-bold text-slate-900 mb-3">Sosyal Medya</h4>
-            <div className="flex gap-4 text-sm font-semibold text-slate-600">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">Instagram</a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">Facebook</a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-green-600">WhatsApp</a>
+            <h4 className="text-sm font-semibold text-white mb-3">Sosyal Medya & WhatsApp</h4>
+            <div className="flex flex-col gap-2 text-xs">
+              <a
+                href="https://wa.me/905416304440"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-400 hover:underline font-semibold"
+              >
+                💬 WhatsApp İletişim Hattı
+              </a>
+              <a href="#" className="hover:text-blue-400 transition-colors">
+                Instagram
+              </a>
+              <a href="#" className="hover:text-blue-400 transition-colors">
+                Facebook
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Telif & Alt Çizgi */}
-        <div className="border-t border-slate-100 pt-6 text-center text-xs text-slate-500">
-          © {new Date().getFullYear()} Gökraf. Tüm hakları saklıdır.
+        <div className="border-t border-slate-800 mt-8 pt-6 text-center text-xs text-slate-500">
+          © 2026 Gökraf. Tüm hakları saklıdır.
         </div>
       </div>
     </footer>
